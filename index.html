@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>CineMood — каталог фильмов по настроению</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <h1 class="logo">CineMood</h1>
+      <nav class="nav">
+        <a href="#idea">Идея</a>
+        <a href="#scenarios">Сценарии</a>
+        <a href="#pages">Страницы</a>
+        <a href="#api">API</a>
+        <a href="#stack">Стек</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Каталог фильмов по настроению</h2>
+        <p>
+          Одностраничное приложение (SPA), которое помогает быстро подобрать фильм под конкретное
+          настроение или ситуацию: «лёгкий вечер», «хочу пореветь», «интеллектуальное кино» и т.д.
+        </p>
+        <button class="btn" onclick="scrollToSection('idea')">
+          Узнать идею
+        </button>
+      </div>
+    </section>
+
+    <section id="idea" class="section">
+      <div class="container">
+        <h2>Идея и проблема</h2>
+        <p>
+          Существующие сервисы (Кинопоиск, IMDb) дают огромные каталоги, но пользователю сложно быстро
+          подобрать фильм под настроение. Приходится фильтровать по жанрам и рейтингам, тратить время
+          на бесконечный скролл.
+        </p>
+        <p>
+          <strong>CineMood</strong> фокусируется на подборке фильмов по настроению и жизненным
+          ситуациям. Пользователь выбирает настроение, а приложение показывает подходящие фильмы.
+        </p>
+
+        <h3>Чем лучше существующих решений?</h3>
+        <ul>
+          <li>Упор на «настроение», а не только жанры и рейтинг.</li>
+          <li>Быстрые пресеты: один клик — готовая подборка.</li>
+          <li>Списки «Избранное» и «Хочу посмотреть» с тегами настроения.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="scenarios" class="section section--alt">
+      <div class="container">
+        <h2>Ключевые пользовательские сценарии</h2>
+
+        <article class="card">
+          <h3>1. Быстрый выбор фильма по настроению</h3>
+          <ol>
+            <li>Пользователь открывает главную страницу.</li>
+            <li>Выбирает настроение: «Лёгкий вечер» / «Комедия с друзьями» / «Хочу пореветь».</li>
+            <li>Список фильмов обновляется и показывает подходящие варианты.</li>
+            <li>Пользователь открывает карточку фильма и добавляет в «Хочу посмотреть».</li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <h3>2. Поиск конкретного фильма</h3>
+          <ol>
+            <li>Пользователь вводит название фильма в строку поиска.</li>
+            <li>Получает список результатов и выбирает нужный фильм.</li>
+            <li>На странице фильма смотрит описание, рейтинг, теги настроения.</li>
+            <li>Добавляет фильм в «Избранное».</li>
+          </ol>
+        </article>
+
+        <article class="card">
+          <h3>3. Управление списком «Хочу посмотреть»</h3>
+          <ol>
+            <li>Пользователь открывает страницу «Хочу посмотреть».</li>
+            <li>Просматривает список запланированных фильмов.</li>
+            <li>После просмотра меняет статус на «Просмотрено» и, при желании, оставляет заметку.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <section id="pages" class="section">
+      <div class="container">
+        <h2>Структура страниц будущего SPA</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Главная /</h3>
+            <ul>
+              <li>Блок выбора настроения (chip-кнопки).</li>
+              <li>Список популярных фильмов (карточки).</li>
+              <li>Поисковая строка по названию.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Страница фильма /movie/:id</h3>
+            <ul>
+              <li>Постер, описание, жанры, актёры, рейтинг.</li>
+              <li>Теги настроения.</li>
+              <li>Кнопки «Избранное» и «Хочу посмотреть».</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Избранное /favorites</h3>
+            <ul>
+              <li>Список сохранённых фильмов.</li>
+              <li>Фильтрация по жанру и настроению.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>О проекте /about</h3>
+            <ul>
+              <li>Описание идеи и стека технологий.</li>
+              <li>Ссылка на GitHub-репозиторий.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="api" class="section section--alt">
+      <div class="container">
+        <h2>Черновое API (REST)</h2>
+
+        <h3>Фильмы</h3>
+        <ul class="code-list">
+          <li><code>GET /api/movies/popular</code> — список популярных фильмов.</li>
+          <li><code>GET /api/movies/{id}</code> — детальная информация о фильме.</li>
+          <li><code>GET /api/movies/search?query=string</code> — поиск по названию.</li>
+          <li><code>GET /api/movies?mood=chill&amp;genre=comedy</code> — фильтрация по настроению и жанру.</li>
+        </ul>
+
+        <h3>Избранное и «Хочу посмотреть»</h3>
+        <ul class="code-list">
+          <li><code>GET /api/users/{userId}/favorites</code> — список избранного.</li>
+          <li><code>POST /api/users/{userId}/favorites</code> — добавить фильм в избранное.</li>
+          <li><code>DELETE /api/users/{userId}/favorites/{movieId}</code> — удалить из избранного.</li>
+          <li><code>GET /api/users/{userId}/watchlist</code> — список «Хочу посмотреть».</li>
+          <li><code>POST /api/users/{userId}/watchlist</code> — добавить в список.</li>
+          <li><code>DELETE /api/users/{userId}/watchlist/{movieId}</code> — убрать из списка.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="container">
+        <h2>План по реализации</h2>
+        <p>Финальный проект будет реализован как SPA со следующим стеком:</p>
+        <ul>
+          <li><strong>TypeScript</strong> — типизация логики, компонентов и асинхронных операций.</li>
+          <li><strong>React</strong> — функциональные компоненты и хуки.</li>
+          <li><strong>Redux Toolkit</strong> — управление состоянием, createAsyncThunk для запросов.</li>
+          <li><strong>React Router</strong> — навигация между страницами.</li>
+          <li>Бэкенд / внешнее API для фильмов (TMDB/OMDb или свой сервер).</li>
+        </ul>
+        <p>
+          На текущем этапе это только презентация идеи. К 20 декабря будет реализовано полноценное
+          приложение со страницами, API и тестами.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Автор проекта: Александр Мызников, МФТИ ВШПИ</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
